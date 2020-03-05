@@ -5,7 +5,6 @@ $password = "";
 $pdo = new PDO($servername, $username, $password);
 ?>
 
-
 <style>
 table, tr, td, th {
     padding: 20px;
@@ -17,13 +16,20 @@ table {
 }
 
 tr {
-    border-bottom:black solid 2px;
+    border-bottom: black solid 2px;
 }
 
 h2 {
     margin-bottom: -15px;
 }
 
+html {
+    background-Color: #88888888;
+}
+
+body {
+    color: #77777777;
+}
 
 </style>
 
@@ -105,12 +111,6 @@ $movieDuration .= $rememberSort;
                         echo("<tr><td>".$info['titel']."</td><td>".$info['duur']."</td><td><a name='id' type='submit' href='http://localhost/films.php?id=$info[id]'>Details</a></td></tr>");
                     }
                 }
-                else {
-                    $stmt = $pdo->query('SELECT titel, duur, id FROM netland.movies;');
-                    while($info = $stmt->fetch()) {
-                    echo("<tr><td>".$info['titel']."</td><td>".$info['duur']."</td><td><a name='id' type='submit' href='http://localhost/films.php?id=$info[id]'>Details</a></td></tr>");
-                    }
-                }  
             }
             if($stmt == "") {
                 $stmt = $pdo->query('SELECT titel, duur, id FROM netland.movies;');
@@ -149,7 +149,7 @@ $movieDuration .= $rememberSort;
                     if($_GET["serieTitle"] == "title") {
                         $stmt1 = $pdo->query('SELECT title, rating, id FROM netland.series ORDER BY title;');
                         while($info = $stmt1->fetch()) {
-                            echo("<tr><td>".$info['title']."</td><td>".$info['rating']."</td><td><a name='id' type='submit' href='http://localhost/films.php?id=$info[id]'>Details</a></td></tr>");
+                            echo("<tr><td>".$info['title']."</td><td>".$info['rating']."</td><td><a href='http://localhost/series.php?id=$info[id]'>Details</a></td></tr>");
                         }
                     }  
                 }
@@ -157,7 +157,7 @@ $movieDuration .= $rememberSort;
                     if($_GET["serieRating"] == "rating") {
                         $stmt1 = $pdo->query('SELECT title, rating, id FROM netland.series ORDER BY rating;');
                         while($info = $stmt1->fetch()) {
-                            echo("<tr><td>".$info['title']."</td><td>".$info['rating']."</td><td><a name='id' type='submit' href='http://localhost/films.php?id=$info[id]'>Details</a></td></tr>");
+                            echo("<tr><td>".$info['title']."</td><td>".$info['rating']."</td><td><a href='http://localhost/series.php?id=$info[id]'>Details</a></td></tr>");
                         }
                     }
                       
@@ -165,7 +165,7 @@ $movieDuration .= $rememberSort;
                 if ($stmt1 == "") {
                     $stmt1 = $pdo->query('SELECT title, rating, id FROM netland.series;');
                     while($info = $stmt1->fetch()) {
-                        echo("<tr><td>".$info['title']."</td><td>".$info['rating']."</td><td><a name='id' type='submit' href='http://localhost/series.php?id=$info[id]'>Details</a></td></tr>");
+                        echo("<tr><td>".$info['title']."</td><td>".$info['rating']."</td><td><a href='http://localhost/series.php?id=$info[id]'>Details</a></td></tr>");
                     }
                 }
                 
