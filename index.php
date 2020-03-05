@@ -115,7 +115,7 @@ $movieDuration .= $rememberSort;
             if($stmt == "") {
                 $stmt = $pdo->query('SELECT titel, duur, id FROM netland.movies;');
                 while($info = $stmt->fetch()) {
-                echo("<tr><td>".$info['titel']."</td><td>".$info['duur']."</td><td><a name='id' type='submit' href='http://localhost/films.php?id=$info[id]'>Details</a></td></tr>");
+                    echo("<tr><td>".$info['titel']."</td><td>".$info['duur']."</td><td><a name='id' type='submit' href='http://localhost/films.php?id=$info[id]'>Details</a></td></tr>");
                 }
             } 
 
@@ -145,29 +145,29 @@ $movieDuration .= $rememberSort;
         <form action="series.php" method="get">
             <?php
             $stmt1 = "";
-                if(isset($_GET["serieTitle"])) {
-                    if($_GET["serieTitle"] == "title") {
-                        $stmt1 = $pdo->query('SELECT title, rating, id FROM netland.series ORDER BY title;');
-                        while($info = $stmt1->fetch()) {
-                            echo("<tr><td>".$info['title']."</td><td>".$info['rating']."</td><td><a href='http://localhost/series.php?id=$info[id]'>Details</a></td></tr>");
-                        }
-                    }  
-                }
-                if(isset($_GET["serieRating"])) {
-                    if($_GET["serieRating"] == "rating") {
-                        $stmt1 = $pdo->query('SELECT title, rating, id FROM netland.series ORDER BY rating;');
-                        while($info = $stmt1->fetch()) {
-                            echo("<tr><td>".$info['title']."</td><td>".$info['rating']."</td><td><a href='http://localhost/series.php?id=$info[id]'>Details</a></td></tr>");
-                        }
+            if(isset($_GET["serieTitle"])) {
+                if($_GET["serieTitle"] == "title") {
+                    $stmt1 = $pdo->query('SELECT title, rating, id FROM netland.series ORDER BY title;');
+                    while($info = $stmt1->fetch()) {
+                        echo("<tr><td>".$info['title']."</td><td>".$info['rating']."</td><td><a href='http://localhost/series.php?id=$info[id]'>Details</a></td></tr>");
                     }
-                      
-                }
-                if ($stmt1 == "") {
-                    $stmt1 = $pdo->query('SELECT title, rating, id FROM netland.series;');
+                }  
+            }
+            if(isset($_GET["serieRating"])) {
+                if($_GET["serieRating"] == "rating") {
+                    $stmt1 = $pdo->query('SELECT title, rating, id FROM netland.series ORDER BY rating;');
                     while($info = $stmt1->fetch()) {
                         echo("<tr><td>".$info['title']."</td><td>".$info['rating']."</td><td><a href='http://localhost/series.php?id=$info[id]'>Details</a></td></tr>");
                     }
                 }
+                      
+            }
+            if ($stmt1 == "") {
+                $stmt1 = $pdo->query('SELECT title, rating, id FROM netland.series;');
+                while($info = $stmt1->fetch()) {
+                    echo("<tr><td>".$info['title']."</td><td>".$info['rating']."</td><td><a href='http://localhost/series.php?id=$info[id]'>Details</a></td></tr>");
+                }
+            }
                 
             ?>
         </form>
