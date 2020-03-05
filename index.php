@@ -3,7 +3,6 @@ $servername = "mysql:host=localhost;dbname=netland";
 $username = "root";
 $password = "";
 $pdo = new PDO($servername, $username, $password);
-
 ?>
 
 
@@ -33,42 +32,39 @@ h2 {
 </head>
 
 <?php
-
 $rememberSort = "";
 $rememberSort1 = "";
-
- if (array_key_exists('serieTitle', $_GET)){
+if(array_key_exists('serieTitle', $_GET)) {
     $rememberSort = "&serieTitle=title";
 }
- if (array_key_exists('serieRating', $_GET)){
+
+if(array_key_exists('serieRating', $_GET)) {
     $rememberSort = "&serieRating=rating";
 }
- if (array_key_exists('movieTitel', $_GET)){
+
+if(array_key_exists('movieTitel', $_GET)) {
     $rememberSort1 = "&movieTitel=titel";
 }
- if (array_key_exists('movieDuration', $_GET)){
+
+if(array_key_exists('movieDuration', $_GET)) {
     $rememberSort1 = "&movieDuration=duration";
 }
 
-
 $serieTitel = "index.php?serieTitle=";
 $serieTitel .= "title";
-$serieTitel .= $rememberSort1 ;
-
+$serieTitel .= $rememberSort1;
 
 $serieRating = "index.php?serieRating=";
 $serieRating .= "rating";
-$serieRating .= $rememberSort1 ;
-
+$serieRating .= $rememberSort1;
 
 $movieTitel = "index.php?movieTitel=";
 $movieTitel .= "titel";
-$movieTitel .= $rememberSort ;
-
+$movieTitel .= $rememberSort;
 
 $movieDuration = "index.php?movieDuration=";
 $movieDuration .= "duration";
-$movieDuration .= $rememberSort ;
+$movieDuration .= $rememberSort;
 
 ?>
 
@@ -116,7 +112,7 @@ $movieDuration .= $rememberSort ;
                     }
                 }  
             }
-            if($stmt == "" ) {
+            if($stmt == "") {
                 $stmt = $pdo->query('SELECT titel, duur, id FROM netland.movies;');
                 while($info = $stmt->fetch()) {
                 echo("<tr><td>".$info['titel']."</td><td>".$info['duur']."</td><td><a name='id' type='submit' href='http://localhost/films.php?id=$info[id]'>Details</a></td></tr>");
